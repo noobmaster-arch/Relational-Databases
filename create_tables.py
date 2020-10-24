@@ -44,7 +44,7 @@ cur.execute('''CREATE TABLE IF NOT EXISTS PLAYER(
 
 cur.execute('''CREATE TABLE IF NOT EXISTS PLAYER_MATCH(
     playermatch_key INT PRIMARY KEY,
-    match_id INT ,
+    match_id INT,
     player_id INT ,
     batting_hand TEXT,
     bowling_skill TEXT,
