@@ -13,3 +13,4 @@ if(int(sys.argv[1])==4):
 if(int(sys.argv[1])==5):
     cur.execute("INSERT INTO BALL_BY_BALL VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", sys.argv[2:])
 conn.commit()
+conn.close()

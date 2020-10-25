@@ -131,3 +131,4 @@ cur.execute("""
 ;""")
 for i in cur.fetchall():
     print("{},{},{},{}".format(i[0], i[1], i[2], i[3]))
+conn.close()

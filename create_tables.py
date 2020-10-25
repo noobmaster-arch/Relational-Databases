@@ -75,6 +75,7 @@ cur.execute('''CREATE TABLE IF NOT EXISTS BALL_BY_BALL(
     FOREIGN KEY (bowler) REFERENCES PLAYER(player_id)
 )''')
 conn.commit()
+conn.close()
 # cur.execute('select team1, city_name from MATCH')
 # for row in cur: #just testing
 #     print(row)

@@ -33,6 +33,7 @@ next(csvReader)
 for row in csvReader:
     cur.execute('insert into BALL_BY_BALL(match_id, innings_no, over_id, ball_id, striker_batting_position, runs_scored, extra_runs, out_type, striker, non_striker, bowler) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', row)
 conn.commit()
+conn.close()
 
 # cur.execute('select runs_scored from BALL_BY_BALL')
 # for row in cur: #just testing
