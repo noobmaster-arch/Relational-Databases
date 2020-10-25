@@ -27,13 +27,13 @@ with conn:
                     GROUP BY
                         venue
                     ORDER BY
-                        AVG(runs) DESC
+                        AVG(runs) DESC, venue ASC
                     
     ;"""
     )
     one_result = cur.fetchall()
     for i in one_result:
         print("{},{}".format(i[1], i[0]))
-    cur.execute("""DROP VIEW looks;""")
+    cur.execute("""DROP VIEW IF EXISTS looks;""")
 
     
