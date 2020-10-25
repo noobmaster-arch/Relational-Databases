@@ -8,12 +8,11 @@ with conn:
     cur.execute("""
 
                         SELECT
-                            SUM(runs_scored), PLAYER_MATCH.player_id, player_name
-                        FROM BALL_BY_BALL 
-                        INNER JOIN PLAYER_MATCH ON PLAYER_MATCH.player_id = BALL_BY_BALL.striker
+                            SUM(runs_scored), PLAYER.player_id, player_name
+                        FROM BALL_BY_BALL
                         INNER JOIN PLAYER ON PLAYER.player_id = BALL_BY_BALL.striker
                         GROUP BY
-                            PLAYER_MATCH.player_id
+                            PLAYER.player_id
                         ORDER BY
                             SUM(runs_scored) DESC, player_name ASC
                     ;""")
