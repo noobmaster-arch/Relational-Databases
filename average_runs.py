@@ -5,35 +5,19 @@ conn=sqlite3.connect('ipl.db')
 
 with conn:
     cur=conn.cursor()
-    cur.execute(""" CREATE TEMP VIEW IF NOT EXISTS looks (
-                        runs,
-                        venue
-                    )
-                    AS
-                        SELECT
-                            SUM(runs_scored) + SUM(extra_runs), venue_name FROM BALL_BY_BALL INNER JOIN MATCH ON MATCH.match_id = BALL_BY_BALL.match_id
-                        GROUP BY
-                            BALL_BY_BALL.match_id
-
-                        ORDER BY
-                            SUM(runs_scored) DESC
-                    ;""")
-
     cur.execute("""
                     SELECT
-                        AVG(runs), venue
-                    FROM
-                        looks
+                        c1.venue_name, AVG((SELECT SUM(runs_scored + extra_runs) FROM BALL_BY_BALL c2 WHERE c2.match_id=c1.match_id GROUP BY match_id)) as avera
+                    FROM MATCH c1
+                    WHERE
+                        c1.venue_name != "NULL"
                     GROUP BY
-                        venue
+                        c1.venue_name
                     ORDER BY
-                        AVG(runs) DESC, venue ASC
-                    
-    ;"""
-    )
+                        avera DESC, c1.venue_name ASC                  
+    ;""")
     one_result = cur.fetchall()
     for i in one_result:
-        print("{},{}".format(i[1], i[0]))
-    cur.execute("""DROP VIEW IF EXISTS looks;""")
+        print("{},{}".format(i[0], i[1]))
 
     
